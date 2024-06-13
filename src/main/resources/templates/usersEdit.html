@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование человекаф</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{'update?id='+${user.getId()}}" th:object="${user}">
+  <label for="name">Введите имя: </label>
+  <input type="text" th:field="*{name}" id="name"/>
+  </br>
+  <label for="lastName">Введите фамилию: </label>
+  <input type="text" th:field="*{lastName}" id="lastName"/>
+  </br>
+  <label for="age">Введите возраст: </label>
+  <input type="text" th:field="*{age}" id="age"/>
+  </br>
+  </br>
+  <input type="submit" value="Редактирование Юзера">
+</form>
+</body>
+</html>
