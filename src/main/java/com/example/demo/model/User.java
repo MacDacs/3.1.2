@@ -5,57 +5,35 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-
-
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name = "user")
 public class User {
-    @jakarta.persistence.Id
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-    @Column
+    @Column(name = "name")
     private String name;
-    @Column
-    private String lastName;
-    @Column
-    private int age;
+    @Column(name = "email")
+    private String email;
 
-    public User(String name, String lastName, int age) {
-        this.name = name;
-        this.lastName = lastName;
-        this.age = age;
-    }
-
-    public User() {
-
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public User(String email, int id, String name) {
+        this.email = email;
+        this.id = id;
         this.name = name;
     }
+    public User() {}
 
-    public String getLastName() {
-        return lastName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getId() {
@@ -64,6 +42,14 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }
