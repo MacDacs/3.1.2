@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dao.UserDao;
 import com.example.demo.model.User;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +20,6 @@ public class ServiceUserImpl implements ServiceUser{
         this.userDao = userDao;
     }
 
-    @Transactional(readOnly = true)
     @Override
     public List<User> getUsers() {
         return userDao.getAllUsers();
@@ -32,7 +32,7 @@ public class ServiceUserImpl implements ServiceUser{
 
     @Override
     @Transactional
-    public void addUser(User user) {
+    public void addUser(@Valid User user) {
         userDao.addUser(user);
     }
 

@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import com.example.demo.model.User;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
@@ -29,9 +30,9 @@ public class UserDaoImpl implements UserDao {
             User update = em.find(User.class, id);
             update.setName(user.getName());
             update.setEmail(user.getEmail());
-            em.merge(update);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -40,8 +41,8 @@ public class UserDaoImpl implements UserDao {
     public void deleteUser(int id) {
         try {
             em.remove(em.find(User.class, id));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
@@ -50,8 +51,8 @@ public class UserDaoImpl implements UserDao {
         User user = null;
         try {
             user = em.find(User.class, id);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
         }
         return user;
     }

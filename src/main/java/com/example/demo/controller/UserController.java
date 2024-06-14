@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/")
 public class UserController {
-    private ServiceUser serviceUser;
+    private final ServiceUser serviceUser;
 
     @Autowired
     public UserController(ServiceUser serviceUser) {
@@ -47,7 +47,7 @@ public class UserController {
         return "userID";
     }
 
-    @GetMapping("/remove")
+    @PostMapping("/remove")
     public String removeUser(@RequestParam("id") int id) {
         serviceUser.deleteUser(id);
         return "redirect:/";
