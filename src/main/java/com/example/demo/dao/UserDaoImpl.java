@@ -25,35 +25,26 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean updateUser(User user, int id) {
-        try {
-            User update = em.find(User.class, id);
+    public void updateUser(User user, int id) {
+        User update = em.find(User.class,user.getId());
+        if(update!=null) {
             update.setName(user.getName());
             update.setEmail(user.getEmail());
-
-        } catch (EntityNotFoundException e) {
-            e.printStackTrace();
         }
-        return false;
     }
 
     @Override
     public void deleteUser(int id) {
-        try {
+        User userDelete = em.find(User.class, id);
+        if (userDelete != null) {
             em.remove(em.find(User.class, id));
-        } catch (EntityNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
     @Override
     public User getUser(int id) {
         User user = null;
-        try {
-            user = em.find(User.class, id);
-        } catch (EntityNotFoundException e) {
-            e.printStackTrace();
-        }
+        user = em.find(User.class, id);
         return user;
     }
 }
